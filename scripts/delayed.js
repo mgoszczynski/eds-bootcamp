@@ -1,2 +1,2 @@
 // add delayed functionality here
-console.log("delayed loaded");
+console.log('delayed loaded');
