@@ -1,11 +1,3 @@
-import {
-  decorateMain,
-} from '../../scripts/scripts.js';
-
-import {
-  loadSections,
-} from '../../scripts/aem.js';
-
 async function fetchFragment(url) {
   if (url && url.startsWith('/')) {
     const response = await fetch(url);
