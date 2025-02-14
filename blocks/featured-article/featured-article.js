@@ -1,71 +1,64 @@
-/**
- * Loads a fragment.
- * @param {string} path The path to the fragment
- * @returns {Document} The document
- */
-async function loadFragment(path) {
-  if (path && path.startsWith('/')) {
-    const resp = await fetch(path);
-    if (resp.ok) {
-      const parser = new DOMParser();
-      return parser.parseFromString(await resp.text(), 'text/html');
+import {
+  decorateMain,
+} from '../../scripts/scripts.js';
+
+import {
+  loadSections,
+} from '../../scripts/aem.js';
+
+async function fetchFragment(url) {
+  if (url && url.startsWith('/')) {
+    const response = await fetch(url);
+    if (response.ok) {
+      const domParser = new DOMParser();
+      return domParser.parseFromString(await response.text(), 'text/html');
     }
   }
   return null;
 }
 
-/**
- * Retrieves the content of metadata tags.
- * @param {string} name The metadata name (or property)
- * @param doc Document object to query for the metadata. Defaults to the window's document
- * @returns {string} The metadata value(s)
- */
-function getMetadata(name, doc = document) {
-  const attr = name && name.includes(':') ? 'property' : 'name';
-  const meta = [...doc.head.querySelectorAll(`meta[${attr}="${name}"]`)].map((m) => m.content).join(', ');
-  return meta || '';
+function extractMetadata(attribute, documentObj = document) {
+  const attributeType = attribute && attribute.includes(':') ? 'property' : 'name';
+  const metadata = [...documentObj.head.querySelectorAll(`meta[${attributeType}="${attribute}"]`)].map((metaTag) => metaTag.content).join(', ');
+  return metadata || '';
 }
 
-/**
- * @param {HTMLElement} $block The header block element
- */
 export default async function decorate($block) {
-  const link = $block.querySelector('a');
-  const path = link ? link.getAttribute('href') : $block.textContent.trim();
-  const doc = await loadFragment(path);
-  if (!doc) {
+  const anchor = $block.querySelector('a');
+  const url = anchor ? anchor.getAttribute('href') : $block.textContent.trim();
+  const documentFragment = await fetchFragment(url);
+  if (!documentFragment) {
     return;
   }
-  // find metadata
-  const title = getMetadata('og:title', doc);
-  const desc = getMetadata('og:description', doc);
 
-  const $pre = document.createElement('p');
-  $pre.classList.add('pretitle');
-  $pre.textContent = 'Featured Article';
+  const headline = extractMetadata('og:title', documentFragment);
+  const description = extractMetadata('og:description', documentFragment);
 
-  const $h2 = document.createElement('h2');
-  $h2.textContent = title;
+  const preTitle = document.createElement('p');
+  preTitle.classList.add('pretitle');
+  preTitle.textContent = 'Featured Article';
 
-  const $p = document.createElement('p');
-  $p.textContent = desc;
+  const heading = document.createElement('h2');
+  heading.textContent = headline;
 
-  const $link = document.createElement('div');
-  $link.append(link);
-  link.textContent = 'Read More';
-  link.className = 'button primary';
+  const paragraph = document.createElement('p');
+  paragraph.textContent = description;
 
-  const $text = document.createElement('div');
-  $text.classList.add('text');
-  $text.append($pre, $h2, $p, $link);
+  const linkContainer = document.createElement('div');
+  linkContainer.append(anchor);
+  anchor.textContent = 'Read More';
+  anchor.className = 'button primary';
 
-  const $image = document.createElement('div');
-  $image.classList.add('image');
-  // find image
-  const $hero = doc.querySelector('body > main picture');
-  if ($hero) {
-    $image.append($hero);
+  const textContainer = document.createElement('div');
+  textContainer.classList.add('text');
+  textContainer.append(preTitle, heading, paragraph, linkContainer);
+
+  const imageContainer = document.createElement('div');
+  imageContainer.classList.add('image');
+  const heroImage = documentFragment.querySelector('body > main picture');
+  if (heroImage) {
+    imageContainer.append(heroImage);
   }
 
-  $block.replaceChildren($image, $text);
+  $block.replaceChildren(imageContainer, textContainer);
 }
