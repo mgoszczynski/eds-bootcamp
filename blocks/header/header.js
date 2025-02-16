@@ -62,6 +62,18 @@ function toggleAllNavSections(sections, expanded = false) {
   });
 }
 
+function decorateIconsAsLinks() {
+  const icons = document.querySelectorAll('.icon.icon-search');
+  icons.forEach(icon => {
+      const link = document.createElement('a');
+      link.href = 'https://www.google.com';
+      link.target = '_blank'; 
+      const iconClone = icon.cloneNode(true);
+      link.appendChild(iconClone);
+      icon.parentNode.replaceChild(link, icon);
+  });
+}
+
 /**
  * Toggles the entire nav
  * @param {Element} nav The container element
@@ -163,4 +175,5 @@ export default async function decorate(block) {
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
   block.append(navWrapper);
+  decorateIconsAsLinks();
 }
