@@ -64,13 +64,13 @@ function toggleAllNavSections(sections, expanded = false) {
 
 function decorateIconsAsLinks() {
   const icons = document.querySelectorAll('.icon.icon-search');
-  icons.forEach(icon => {
-      const link = document.createElement('a');
-      link.href = 'https://www.google.com';
-      link.target = '_blank'; 
-      const iconClone = icon.cloneNode(true);
-      link.appendChild(iconClone);
-      icon.parentNode.replaceChild(link, icon);
+  icons.forEach((icon) => {
+    const link = document.createElement('a');
+    link.href = 'https://www.google.com';
+    link.target = '_blank';
+    const iconClone = icon.cloneNode(true);
+    link.appendChild(iconClone);
+    icon.parentNode.replaceChild(link, icon);
   });
 }
 
