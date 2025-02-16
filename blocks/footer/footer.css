@@ -39,9 +39,20 @@ footer .footer > div .section:nth-child(2),
 footer .footer > div .section:nth-child(3) {
   display: flex;
   justify-content: center;
-
-  /* align horizontally center */
   align-items: center;
+}
+
+footer .footer > div .section:nth-child(2) .default-content-wrapper ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer .footer > div .section:nth-child(2) .default-content-wrapper ul li {
+  margin: 0 10px; /* Add margin to list items */
 }
 
 footer .footer > div .section:nth-child(4) {
