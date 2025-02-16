@@ -1,7 +1,6 @@
-Please always provide the [GitHub issue(s)](../issues) your PR is for, as well as test URLs where your change can be observed (before and after):
+What's Changed?
 
-Fix #<gh-issue-id>
 
 Test URLs:
-- Before: https://main--{repo}--{owner}.aem.live/
-- After: https://<branch>--{repo}--{owner}.aem.live/
+- Before: https://main--eds-bootcamp--mgoszczynski.aem.live/
+- After: https://<branch>--eds-bootcamp--mgoszczynski.aem.live/

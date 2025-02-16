@@ -1,19 +1,74 @@
 footer {
-  background-color: var(--light-color);
+  background-color: #202020;
   font-size: var(--body-font-size-xs);
+  color: var(--light-color);
+}
+
+footer a {
+  color: var(--light-color);
 }
 
 footer .footer > div {
   margin: auto;
   max-width: 1200px;
   padding: 40px 24px 24px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+footer .footer > div .section {
+  flex: 1 1 33.33%;
+  padding: 0;
+}
+
+footer .footer > div .section:nth-child(1) .icon-wknd-logo-light {
+  width: 128px;
+  height: 128px;
+}
+
+footer .footer > div .section:nth-child(2) .default-content-wrapper .ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer .footer > div .section:nth-child(2),
+footer .footer > div .section:nth-child(3) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer .footer > div .section:nth-child(2) .default-content-wrapper ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer .footer > div .section:nth-child(2) .default-content-wrapper ul li {
+  margin: 0 10px; /* Add margin to list items */
+}
+
+footer .footer > div .section:nth-child(4) {
+  flex: 1 1 100%;
 }
 
 footer .footer p {
   margin: 0;
 }
 
-@media (width >= 900px) {
+.footer a {
+  color: white;
+}
+
+/* stylelint-disable-next-line media-feature-range-notation */
+@media (min-width: 900px) {
   footer .footer > div {
     padding: 40px 32px 24px;
   }
