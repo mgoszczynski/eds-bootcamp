@@ -1,0 +1,38 @@
+.card-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 24px;
+  }
+  
+  .card {
+    border: 1px solid #dadada;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card-image {
+    line-height: 0;
+  }
+  
+  .card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+  
+  .card-text {
+    padding: 16px;
+  }
+  
+  .card-text h3 {
+    margin: 0 0 8px;
+  }
+  
+  .card-text p {
+    margin: 0 0 16px;
+  }
+  
+  .card-text .button {
+    align-self: flex-start;
+  }
