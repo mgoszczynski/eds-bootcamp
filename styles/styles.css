@@ -41,6 +41,7 @@
   --nav-height: 64px;
 }
 
+
 /* fallback fonts */
 @font-face {
   font-family: roboto-condensed-fallback;
@@ -119,6 +120,22 @@ h3 { font-size: var(--heading-font-size-l); }
 h4 { font-size: var(--heading-font-size-m); }
 h5 { font-size: var(--heading-font-size-s); }
 h6 { font-size: var(--heading-font-size-xs); }
+
+h2.heading.underline  {
+    display: inline-block;
+    position: relative;
+    padding-bottom: 12px; 
+}
+  
+h2.heading.underline::after  {
+    content: "";
+    position: absolute;
+    left: 0; 
+    bottom: 0;
+    width: 50%; 
+    height: 2px; 
+    background-color: var(--link-color);
+}
 
 p,
 dl,
