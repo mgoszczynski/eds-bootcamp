@@ -22,6 +22,10 @@ indices:
         select: head > meta[name="description"]
         value: |
           attribute(el, 'content')
+      author:
+        select: author-card-body > h2
+        value: | 
+          text(el)
       lastModified:
         select: none
         value: |
