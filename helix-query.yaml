@@ -1,5 +1,6 @@
 version: 1
 # See https://www.hlx.live/docs/setup-indexing.
+# rebuilding index
 
 indices:
   site:
