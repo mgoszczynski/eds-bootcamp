@@ -12,6 +12,9 @@ export default async function decorate($block) {
       throw new Error('data.data is undefined');
     }
 
+    data.data = data.data.filter((article) => article.path !== '/magazine')
+      .sort((a, b) => new Date(b.lastModified) - new Date(a.lastModified));
+
     // Iterate over the list and create a card for each article
     const articles = data.data.slice(0, 4); // Fetch up to 4 articles
     const cardList = document.createElement('div');
