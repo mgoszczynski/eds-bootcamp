@@ -23,7 +23,7 @@ indices:
         value: |
           attribute(el, 'content')
       author:
-        select: author-card-body > h2
+        select: .author-card-body > h2
         value: | 
           text(el)
       lastModified:
