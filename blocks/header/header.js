@@ -66,7 +66,7 @@ function decorateIconsAsLinks() {
   const icons = document.querySelectorAll('.icon.icon-search');
   icons.forEach((icon) => {
     const link = document.createElement('a');
-    link.href = '/search'
+    link.href = '/search';
     link.target = '_blank';
     const iconClone = icon.cloneNode(true);
     link.appendChild(iconClone);
